@@ -332,7 +332,6 @@ if(!r.ok)throw new Error(j.message||("erreur "+r.status));return j}
 async function connect(tok,c){
 GH.tok=tok;GH.owner=c.owner;GH.repo=c.repo;
 var r=await gh("GET","");
-if(r.permissions&&!r.permissions.push)throw new Error("ce jeton n’a pas le droit d’écrire sur ce dépôt");
 GH.branch=c.branch||r.default_branch;c.branch=GH.branch;
 try{localStorage.setItem("gp_tok",tok);localStorage.setItem("gp_cfg",JSON.stringify(c))}catch(e){}
 CAN=true;bar()}
@@ -340,7 +339,7 @@ async function login(){
 var c=cfg();
 if(!c.owner||!c.repo){var rp=prompt("Ton dépôt GitHub (format : utilisateur/dépôt) :");if(!rp||rp.indexOf("/")<1)return;c.owner=rp.split("/")[0].trim();c.repo=rp.split("/")[1].trim()}
 var t=prompt("Colle ton jeton GitHub (il reste uniquement dans ce navigateur) :");if(!t)return;
-try{await connect(t.trim(),c)}catch(e){GH.tok=null;alert("Connexion refusée : "+e.message)}}
+try{await connect(t.trim(),c)}catch(e){GH.tok=null;alert("Connexion refusée : "+e.message+"\n\nDépôt essayé : "+c.owner+"/"+c.repo+"\n(404 = le jeton n’a pas accès à ce dépôt ; 401 = jeton invalide ou expiré)")}}
 function logout(){try{localStorage.removeItem("gp_tok")}catch(e){}GH.tok=null;CAN=false;ED=false;DATA=JSON.parse(SAVED);draw()}
 function b64(s){var b=new TextEncoder().encode(s),r="",i=0;for(;i<b.length;i+=32768)r+=String.fromCharCode.apply(null,b.subarray(i,i+32768));return btoa(r)}
 async function save(){

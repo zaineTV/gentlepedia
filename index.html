@@ -180,6 +180,25 @@ h2.oldh{margin:34px 0 14px;font-size:18px;color:var(--mu)}
 .empty{background:transparent;border:1px dashed rgba(255,255,255,.14);border-radius:20px}
 .add{border-radius:14px}
 @media(max-width:700px){.hero{padding:40px 16px;border-radius:22px}header.top{margin:0 -14px;padding:10px 14px}.tabs{width:auto}}
+/* ===== Twitch ===== */
+.hm{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start}
+.rail{position:sticky;top:88px;display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 10px;margin-top:8px;background:var(--bg2);border:1px solid rgba(255,255,255,.07);border-radius:26px}
+.rail h4{margin:0;font-size:10px;letter-spacing:.16em;color:var(--mu);text-transform:uppercase}
+.tw-it{display:flex;flex-direction:column;align-items:center;gap:4px}
+.twb{position:relative;width:50px;height:50px;border-radius:50%;padding:0;border:2px solid #9146ff;overflow:hidden;background:#2a2a32;display:grid;place-items:center;font-weight:800;transition:transform .15s,box-shadow .15s}
+.twb:hover{transform:scale(1.1);box-shadow:0 0 0 4px rgba(145,70,255,.35)}
+.twb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.edit .rail{width:190px;align-items:stretch}.edit .tw-it{align-items:center}
+.twm{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:50;display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+.twm.on{display:flex}
+.twp{width:min(1220px,100%);max-height:100%;background:var(--bg2);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.twh{display:flex;align-items:center;gap:10px;padding:12px 16px}
+.twh b{font-size:16px}.twh .sp{flex:1}
+.twh a,.twh button{background:var(--bg3);border-radius:10px;padding:7px 12px;font-size:13px;color:var(--tx);text-decoration:none}
+.twc{display:grid;grid-template-columns:minmax(0,1fr) 340px;height:min(72vh,660px);background:#000}
+.twc iframe{border:0;width:100%;height:100%}
+.twn{grid-column:1/-1;padding:28px;color:var(--mu);background:var(--bg2);align-self:center}
+@media(max-width:900px){.hm{grid-template-columns:1fr}.rail{position:static;flex-direction:row;flex-wrap:wrap;justify-content:center;order:-1;margin-top:0}.edit .rail{width:auto}.twc{grid-template-columns:1fr;height:auto}.twc iframe{height:56vw;min-height:220px}.twc iframe+iframe{height:380px}}
 </style>
 </head>
 <body>
@@ -197,6 +216,7 @@ h2.oldh{margin:34px 0 14px;font-size:18px;color:var(--mu)}
 <p class="note">Site fan fait en exemple. Les données (joueurs, matchs, stats) sont fictives ou reprises à titre d’illustration.</p>
 </div></main>
 </div>
+<div class="twm" id="twm" role="dialog" aria-modal="true" aria-label="Stream Twitch"><div class="twp"><div class="twh"><b id="twt"></b><span class="sp"></span><a id="twa" target="_blank" rel="noopener">Ouvrir sur Twitch ↗</a><button id="twx" aria-label="Fermer">✕</button></div><div class="twc" id="twc"></div></div></div>
 <script type="application/json" id="data">{"site":{"name":"GENTLEPEDIA","tag":"Toutes les actualités et statistiques sur la structure Gentle Mates","club":"Gentle Mates"},"lab":{"news":"Actualités","rost":"Nos rosters","bday":"Anniversaires","next":"Prochain match","stats":"Statistiques","maps":"Statistiques des maps","team":"Membres de l’équipe"},"games":[{"id":"aoe","n":"Age of Empires","c":"#f5c542","s":"AoE","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#f5c542","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"cod","n":"Call of Duty","c":"#d77bf0","s":"CoD","players":[{"p":"Veohz","r":"Head of","n":"William L.","d":"14/12/2001","a":"23","t":"6 jours","in":"26/11/2025","out":"—","img":"images/1793823897392.png"},{"p":"JoeDeceives","r":"Joueur","n":"Joseph R.","d":"23/09/2004","a":"22","t":"6 jours","in":"28/06/2026","out":"—","img":"images/1793824279284.png"},{"p":"Neptune","r":"Joueur","n":"Travis M.","d":"09/04/2002","a":"23","t":"6 jours","in":"26/11/2025","out":"03/06/2026","img":"images/1793824590481.png"},{"p":"Ghosty","r":"Joueur","n":"Daniel R.","d":"23/05/2002","a":"23","t":"6 jours","in":"26/11/2025","out":"10/08/2026","img":"images/1793824147033.png"},{"p":"Envoy","r":"Joueur","n":"Dylan H.","d":"19/01/2000","a":"23","t":"6 jours","in":"26/11/2025","out":"28/05/2026","img":"images/1793825004430.png"},{"p":"Estreal","r":"Joueur","n":"Justice M.","d":"17/12/2002","a":"20","t":"6 jours","in":"26/11/2025","out":"11/08/2026","img":"images/1793825543892.png"},{"p":"Sib","r":"Joueur","n":"Prénom N.","d":"03/02/2002","a":"20","t":"6 jours","in":"26/11/2025","out":"10/08/2026","img":"images/1793826288931.png"},{"p":"Drazah","r":"Joueur","n":"Zachary J.","d":"09/05/2001","a":"20","t":"6 jours","in":"21/10/2026","out":"—","img":"images/1793828010487.png"},{"p":"Abuzah","r":"Joueur","n":"Jordan F.","d":"13/07/2000","a":"20","t":"6 jours","in":"21/10/2026","out":"—","img":"images/1793828117741.png"},{"p":"04","r":"Joueur","n":"Jovan R.","d":"02/10/2004","a":"20","t":"6 jours","in":"21/10/2026","out":"—","img":"images/1793828268386.png"}],"matches":[{"bo":"BEST OF 5","ev":"MonsterEnergy Launch Invitational ","a":"PGM","ac":"#d77bf0","b":"C9","bc":"#06aeef","dt":"15/01/2027","tm":"21:00","sa":"-","sb":"-","st":"À venir","la":"images/1793825579883.png","lb":"images/1793825619182.png"}],"stats":[["Série de victoires","0"],["Meilleure série","3"],["Série de défaites","1"],["Pire série","12"],["Joués","32"],["Gagnés","6"],["Win rate","18,75 %"],["Joueurs actifs","7"],["Anciens","16"],["Âge moyen","24,3"]],"next":{"a":"Paris Gentle Mates","ac":"#d77bf0","b":"Boston Breach","bc":"#4ade80","ev":"2026 Major IV"},"maps":[],"img":"images/1793827626189.jpg","tint":"39","results":[{"bo":"BEST OF 5","ev":"Tournoi : Kaysan's Showdown VIII","a":"PGM","ac":"#d77bf0","b":"TX","bc":"#9cc43d","dt":"01/12/2025","tm":"06:45","sa":"4","sb":"1","st":"Victoire","la":"images/1793824412639.png","lb":"images/1793824441204.png"},{"bo":"BEST OF 5","ev":"Tournoi : Kaysan's Showdown VIII","a":"PGM","ac":"#d77bf0","b":"TX","bc":"#9ac23d","dt":"1/12/2025","tm":"03:15","sa":"3","sb":"2","st":"Victoire","lb":"images/1793824435514.png","la":"images/1793824418325.png"},{"bo":"BEST OF 5","ev":"Tournoi : Kaysan's Showdown VIII","a":"PGM","ac":"#d77bf0","b":"LAT","bc":"#f83a3a","dt":"30/11/2025","tm":"20:30","sa":"3","sb":"1","st":"Victoire","la":"images/1793824423623.png","lb":"images/1793824429241.png"}],"t":{"palmares":[["Kaysan's Showdown VIII","01/12/2025","LAN"]],"tournois":[["Kaysan's Showdown VIII","01/12/2025","1st","B-Tier"]],"classement":[["…","…","…","…"]],"gains":[],"mercato":[["Envoy","Kick","28/05/2026","G2"],["Ghosty","Kick","10/08/2026","…"],["Neptune","sur le banc","03/06/2026","…"],["Estreal","sur le banc","11/08/2026","…"],["Sib","Kick","10/08/2026","Falcons"]]}},{"id":"wz","n":"CoD: Warzone","c":"#c6ee3a","s":"WZ","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#c6ee3a","b":"","bc":"#4ade80","ev":""},"maps":[],"img":"","results":[]},{"id":"cs","n":"Counter Strike","c":"#3b82c4","s":"CS","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#3b82c4","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"fg","n":"Fighting Games","c":"#38bdf8","s":"FG","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#38bdf8","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"fn","n":"Fortnite","c":"#f97316","s":"FN","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#f97316","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"rl","n":"Rocket League","c":"#8b5cf6","s":"RL","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#8b5cf6","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"tft","n":"Teamfight Tactics","c":"#4ade80","s":"TFT","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#4ade80","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[]},{"id":"val","n":"Valorant","c":"#ec407a","s":"VAL","players":[],"matches":[],"stats":[],"next":{"a":"PGM","ac":"#ec407a","b":"","bc":"#4ade80","ev":""},"maps":[],"results":[],"t":{"tournois":[]}}],"news":[{"t":"Le retour de Valorant","by":"Article par Vinny","dt":"29/11/2025","c":"#ec407a","x":"Une nouvelle équipe monte sur le serveur.","img":""},{"t":"Notre équipe Rocket League","by":"Article par Vinny","dt":"20/11/2025","c":"#8b5cf6","x":"Dès sa première année, le club réussit l’exploit.","img":""},{"t":"Deux ans d’émotion","by":"Article par Lucas","dt":"07/11/2025","c":"#f97316","x":"Une page se tourne pour la communauté.","img":""}],"bdays":[{"n":"Veohz","d":"13 décembre"},{"n":"Mayhem","d":"28 novembre"},{"n":"Ghostly","d":"23 mai"}]}</script>
 <script>
 var ED=false,CAN=false,DATA,st={g:null,tab:"Vue d’ensemble",sub:"Calendrier"},imgPath=null;
@@ -284,7 +304,7 @@ $("club").innerHTML=T("site.club");
 }
 function newsCard(n,i){var p="news."+i;
 return'<article class="card"><div class="img" style="'+(n.img?'background-image:url('+esc(n.img)+');background-size:cover;background-position:center':'background:linear-gradient(135deg,'+n.c+',#0b0b0d)')+'"><em>'+T(p+".by")+'</em><span>'+T(p+".dt")+'</span>'+CAM(p+".img")+'</div><h3>'+T(p+".t")+'</h3><p>'+T(p+".x")+'</p>'+(ED?'<div class="row">'+C(p+".c")+X(p)+'</div>':'')+'</article>'}
-function home(){
+function home0(){
 var h='<div class="hero"><h1>'+LOGO+T("site.name")+'</h1><p>'+T("site.tag")+'</p></div>';
 h+='<h2>'+T("lab.news")+'<a data-t="Actualités">Voir toutes les actualités</a></h2><div class="news">';
 DATA.news.slice(0,ED?99:3).forEach(function(n,i){h+=newsCard(n,i)});
@@ -294,6 +314,26 @@ h+='</div><h2>'+T("lab.bday")+'</h2><div class="bday">';
 DATA.bdays.forEach(function(b,i){var p="bdays."+i;h+='<div class="bd"><div class="av">'+esc((b.n||"?")[0])+'</div><div><b>'+T(p+".n")+'</b><small>'+T(p+".d")+'</small>'+X(p)+'</div></div>'});
 return h+'</div>'+A("bdays","Ajouter un anniversaire");
 }
+
+NEW.twitch=function(){return{l:"pseudo",img:""}};
+function tl(l){return String(l||"").toLowerCase().replace(/[^a-z0-9_]/g,"")}
+function rail(){DATA.twitch=DATA.twitch||[];
+if(!DATA.twitch.length&&!ED)return"";
+var h='<div class="rail" aria-label="Chaînes Twitch"><h4>Twitch</h4>';
+DATA.twitch.forEach(function(t,i){var l=tl(t.l),p="twitch."+i,src=t.img?U(t.img):(l?"https://unavatar.io/twitch/"+l:"");
+h+='<div class="tw-it"><button class="twb" data-tw="'+i+'" title="'+esc(l)+' — voir le stream" aria-label="Voir le stream de '+esc(l)+'">'+esc((l||"?")[0].toUpperCase())+(src?'<img src="'+esc(src)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'</button>'+(ED?'<div class="row">'+T(p+".l")+'</div><div class="row">'+IB(p+".img")+X(p,"×")+'</div>':'')+'</div>'});
+if(ED)h+=A("twitch","Chaîne");
+return h+'</div>'}
+function home(){return'<div class="hm"><div class="hc">'+home0()+'</div>'+rail()+'</div>'}
+function twOpen(i){var t=(DATA.twitch||[])[i];if(!t)return;var l=tl(t.l);if(!l)return;
+var host=location.hostname,ok=host&&!/^[\d.]+$/.test(host)&&host.charAt(0)!=="[",ph=encodeURIComponent(host);
+$("twt").textContent=l;$("twa").href="https://www.twitch.tv/"+l;
+$("twc").innerHTML=ok?'<iframe src="https://player.twitch.tv/?channel='+l+'&parent='+ph+'&autoplay=true" allowfullscreen allow="autoplay; fullscreen" title="Stream de '+l+'"></iframe><iframe src="https://www.twitch.tv/embed/'+l+'/chat?parent='+ph+'&darkpopout" title="Chat de '+l+'"></iframe>':'<div class="twn">Le lecteur Twitch ne s’affiche que sur un site avec un nom de domaine (pas depuis un fichier ouvert directement, ni via une adresse IP). Utilise le bouton « Ouvrir sur Twitch ».</div>';
+$("twm").classList.add("on");$("twx").focus()}
+function twClose(){$("twm").classList.remove("on");$("twc").innerHTML=""}
+document.addEventListener("click",function(e){var t=e.target.closest("[data-tw]");if(t){twOpen(+t.dataset.tw);return}if(e.target===$("twm")||e.target.closest("#twx"))twClose()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")twClose()});
+function home_end(){}
 function game(i){
 var g=DATA.games[i],b="games."+i,h='<div class="gp"><div><div class="title"><h1>'+T("lab.team")+' — <span style="color:'+g.c+'">'+T(b+".n")+'</span></h1>';
 if(ED)h+=C(b+".c")+'<span class="ed2">Sigle : '+T(b+".s")+'</span>'+IB(b+".img","Image du jeu")+RG(i)+X(b,"Supprimer le jeu");else h+='<button class="btn">Ajouter aux favoris</button>';
@@ -375,7 +415,7 @@ var cur=await gh("GET","/contents/"+GH.path+"?ref="+encodeURIComponent(GH.branch
 var c=document.documentElement.cloneNode(true);
 c.querySelector("#data").textContent=JSON.stringify(DATA).replace(/</g,"\\u003c");
 ["side","nav","view","bar","crumb","club"].forEach(function(i){c.querySelector("#"+i).innerHTML=""});
-c.removeAttribute("style");c.querySelector("body").removeAttribute("class");
+c.removeAttribute("style");c.querySelector("body").removeAttribute("class");c.querySelector("#twc").innerHTML="";c.querySelector("#twm").className="twm";
 var rs=await gh("PUT","/contents/"+GH.path,{message:"Mise à jour du contenu",content:b64("<!DOCTYPE html>\n"+c.outerHTML),sha:cur.sha,branch:GH.branch});
 SAVED=JSON.stringify(DATA);LASTSAVE=Date.now();ED=false;draw();msg("Enregistré ✔ (commit "+((rs.commit&&rs.commit.sha)||"").slice(0,7)+") — visible en ligne dans quelques secondes");
 }catch(e){msg("Échec de l’enregistrement : "+e.message)}}

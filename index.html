@@ -337,7 +337,10 @@ try{localStorage.setItem("gp_tok",tok);localStorage.setItem("gp_cfg",JSON.string
 CAN=true;bar()}
 async function login(){
 var c=cfg();
-if(!c.owner||!c.repo){var rp=prompt("Ton dépôt GitHub (format : utilisateur/dépôt) :");if(!rp||rp.indexOf("/")<1)return;c.owner=rp.split("/")[0].trim();c.repo=rp.split("/")[1].trim()}
+if(!c.owner||!c.repo){var rp=prompt("Ton dépôt GitHub, par exemple : monpseudo/mon-depot\n(tu peux aussi coller son adresse github.com)");if(!rp)return;
+var pp=rp.trim().replace(/^https?:\/\//,"").replace(/^(www\.)?github\.com\//,"").replace(/\.git$/,"").split("/").filter(Boolean);
+if(pp.length<2){alert("Format attendu : utilisateur/dépôt");return}
+c.owner=pp[0];c.repo=pp[1]}
 var t=prompt("Colle ton jeton GitHub (il reste uniquement dans ce navigateur) :");if(!t)return;
 try{await connect(t.trim(),c)}catch(e){GH.tok=null;alert("Connexion refusée : "+e.message+"\n\nDépôt essayé : "+c.owner+"/"+c.repo+"\n(404 = le jeton n’a pas accès à ce dépôt ; 401 = jeton invalide ou expiré)")}}
 function logout(){try{localStorage.removeItem("gp_tok")}catch(e){}GH.tok=null;CAN=false;ED=false;DATA=JSON.parse(SAVED);draw()}

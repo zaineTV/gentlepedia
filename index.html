@@ -219,7 +219,19 @@ function RAWB(){return SRC?"https://raw.githubusercontent.com/"+SRC+"/"+BR+"/":"
 var PREV={};function U(v){if(PREV[v])return PREV[v];return(/^images\//.test(v)&&RAWB())?RAWB()+v:v}
 function parseData(h){var m=/<script type="application\/json" id="data">([\s\S]*?)<\/script>/.exec(h);return m?JSON.parse(m[1]):null}
 var LASTSAVE=0;
-async function loadRemote(){if(!SRC||document.hidden||Date.now()-LASTSAVE<30000)return;try{var r=await fetch(RAWB()+"index.html?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;var d=parseData(await r.text());if(!d)return;var js=JSON.stringify(d);if(js!==SAVED&&!ED){SAVED=js;DATA=d;draw()}}catch(e){}}
+async function loadRemote(){
+if(!SRC||document.hidden||Date.now()-LASTSAVE<15000)return;
+try{
+var t=null;
+try{
+var h={Accept:"application/vnd.github.raw+json"};if(GH&&GH.tok)h.Authorization="Bearer "+GH.tok;
+var r=await fetch("https://api.github.com/repos/"+SRC+"/contents/index.html?ref="+encodeURIComponent(BR),{cache:"no-cache",headers:h});
+if(r.ok)t=await r.text()
+}catch(e){}
+if(t==null){var r2=await fetch(RAWB()+"index.html?t="+Date.now(),{cache:"no-store"});if(!r2.ok)return;t=await r2.text()}
+var d=parseData(t);if(!d)return;var js=JSON.stringify(d);
+if(js!==SAVED&&!ED){SAVED=js;DATA=d;draw()}
+}catch(e){}}
 var $=function(i){return document.getElementById(i)};
 var dEl=$("data"),SAVED=dEl.textContent.trim()||JSON.stringify(DEF);
 DATA=JSON.parse(SAVED);
@@ -332,7 +344,7 @@ if(!c.owner&&SRC){var q=SRC.split("/");c.owner=q[0];c.repo=q[1];c.branch=BR}
 var h=location.hostname;if(!c.owner&&/\.github\.io$/.test(h)){c.owner=h.split(".")[0];c.repo=location.pathname.split("/")[1]||h}
 return c}
 async function gh(method,url,body){
-var r=await fetch("https://api.github.com/repos/"+GH.owner+"/"+GH.repo+url,{method:method,headers:{Authorization:"Bearer "+GH.tok,Accept:"application/vnd.github+json"},body:body?JSON.stringify(body):undefined});
+var r=await fetch("https://api.github.com/repos/"+GH.owner+"/"+GH.repo+url,{method:method,cache:"no-store",headers:{Authorization:"Bearer "+GH.tok,Accept:"application/vnd.github+json"},body:body?JSON.stringify(body):undefined});
 var j={};try{j=await r.json()}catch(e){}
 if(!r.ok)throw new Error(j.message||("erreur "+r.status));return j}
 async function connect(tok,c){

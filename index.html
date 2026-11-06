@@ -490,7 +490,7 @@ document.addEventListener("change",function(e){var t=e.target;if(t.dataset&&t.da
 document.addEventListener("click",function(e){
 var t=e.target.closest("[data-del],[data-add],[data-img],[data-rm]");if(!t||!ED)return;
 if(t.dataset.del){var a=t.dataset.del.split("."),i=+a.pop();get(a.join(".")).splice(i,1);draw()}
-else if(t.dataset.add){var p=t.dataset.add,k=p.split(".").pop(),n=NEW[k]();get(p)[(k==="results"||k==="tournois"||k==="mercato")?"unshift":"push"](n);if(k==="games")st.g=n.id;draw()}
+else if(t.dataset.add){var p=t.dataset.add,k=p.split(".").pop(),n=NEW[k]();get(p)[(k==="results"||k==="tournois"||k==="mercato"||k==="palmares")?"unshift":"push"](n);if(k==="games")st.g=n.id;draw()}
 else if(t.dataset.img){imgPath=t.dataset.img;$("file").click()}
 else if(t.dataset.rm){setp(t.dataset.rm,"");draw()}
 });
